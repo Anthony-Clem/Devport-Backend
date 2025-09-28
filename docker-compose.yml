@@ -1,0 +1,15 @@
+services:
+  dev-db:
+    image: postgres:15
+    container_name: devport
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: devport-db
+    volumes:
+      - devport:/var/lib/postgresql/data
+
+volumes:
+  devport:
