@@ -15,8 +15,12 @@ model User {
 
   profile Profile?
 
+  projects Project[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("users")
 }
 
 model Profile {
@@ -32,4 +36,24 @@ model Profile {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("profile")
+}
+
+model Project {
+  id String @id @default(cuid())
+
+  name          String
+  description   String
+  demoUrl       String
+  repositoryUrl String
+  thumbnail     String
+
+  userId String
+  User   User   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("projects")
 }
